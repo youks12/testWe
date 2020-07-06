@@ -21,23 +21,17 @@ public class UserDAO {
 			String dbPassword = "oracle";
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
-			System.out.println(">>>>>>>>>>>>>>>> 111");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public int login(String userID, String userPassword){
-		System.out.println("login >>>>>>>>");
 		String SQL = "SELECT userPassword FROM USER WHERE userID=?";
 		try {
-			System.out.println("try >>>>>>>>");
 			pstmt = conn.prepareStatement(SQL);
-			System.out.println("pstmt >>>>>>>>");
 			pstmt.setString(1, userID);
-			System.out.println("pstmt.setString(1, userID); >>>>>>>>");
 			rs = pstmt.executeQuery();
-			System.out.println("rs = pstmt.executeQuery(); >>>>>>>>");
 			if(rs.next()){
 				if(rs.getString(1).equals(userPassword))
 					return 1;//로그인성공
